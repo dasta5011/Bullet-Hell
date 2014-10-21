@@ -1,0 +1,12 @@
+#pragma strict
+//sets variable for adjusting speed at which bullets move forward
+var speed : float;
+
+function Start () {
+//This is what moves the bullets forward along Z axis.  transform.forward is for adjusting Z axis.
+rigidbody.velocity = transform.forward * speed;
+}
+
+function Update () {
+
+}
