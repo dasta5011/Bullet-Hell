@@ -46,8 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Player_Assets\Fire.cs" />
-     <Compile Include="Assets\Player_Assets\Touch.cs" />
      <Compile Include="Assets\SAMPLES\Done_Scripts\Done_BGScroller.cs" />
      <Compile Include="Assets\SAMPLES\Done_Scripts\Done_DestroyByBoundary.cs" />
      <Compile Include="Assets\SAMPLES\Done_Scripts\Done_DestroyByContact.cs" />
