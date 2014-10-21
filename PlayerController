@@ -12,6 +12,21 @@ var speed : float;
 var tilt : float;
 var boundary : Boundary;
 
+var shot : GameObject;
+var shotSpawn : Transform;
+var fireRate : float;
+
+private var nextFire : float;
+
+function Update(){
+    if (Time.time > nextFire)
+    {
+        nextFire = Time.time + fireRate;
+        Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+        //audio.Play ();
+    }
+ }
+
 function FixedUpdate () {
      var moveHorizontal : float= Input.GetAxis ("Horizontal");
      var moveVertical : float= Input.GetAxis ("Vertical");
