@@ -1,5 +1,22 @@
-﻿var explosion : GameObject;
+﻿
+
+var explosion : GameObject;
 var playerExplosion : GameObject;
+var scoreValue : int;
+private var gameController : GameController;
+
+function Start ()
+{
+    var gameControllerObject : GameObject = GameObject.FindWithTag ("GameController");
+    if (gameControllerObject != null)
+    {
+        gameController = gameControllerObject.GetComponent (GameController);
+    }
+    if (gameController == null)
+    {
+        Debug.Log ("Cannot find 'GameController' script");
+    }
+}
 
 function OnTriggerEnter(other : Collider) 
 {
@@ -11,9 +28,9 @@ function OnTriggerEnter(other : Collider)
     if (other.tag == "Player")
     {
         //Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
-        //GameController.GameOver ();
-        //return;
+        gameController.GameOver ();
     }
+    gameController.AddScore (scoreValue);
     Destroy(other.gameObject);
     Destroy(gameObject);
 }
