@@ -32,6 +32,10 @@ function Update () {
         {
             Application.LoadLevel (Application.loadedLevel);
         }
+        else if (Input.touchCount == 2)
+        {
+            Application.LoadLevel (Application.loadedLevel);
+        }
     }
 }
 
@@ -50,7 +54,7 @@ function SpawnWaves () {
         
         if (gameOver)
         {
-            restartText.text = "Press 'R' for Restart";
+            restartText.text = "Press 'R' for Restart or Tap Screen with Two Fingers";
             restart = true;
             break;
         }
