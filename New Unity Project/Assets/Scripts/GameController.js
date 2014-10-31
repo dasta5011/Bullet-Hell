@@ -1,4 +1,4 @@
-﻿
+﻿#pragma strict
 
 var hazard : GameObject;
 var spawnValues : Vector3;
@@ -7,8 +7,36 @@ var spawnWait : float;
 var startWait : float;
 var waveWait : float;
 
+var scoreText : GUIText;
+var restartText : GUIText;
+var gameOverText : GUIText;
+
+private  var gameOver : boolean;
+private  var restart : boolean;
+private  var score : int;
+
 function Start () {
-    SpawnWaves ();
+	gameOver = false;
+    restart = false;
+    restartText.text = "";
+    gameOverText.text = "";
+    score = 0;
+    UpdateScore ();
+    StartCoroutine (SpawnWaves ());
+}
+
+function Update () {
+    if (restart)
+    {
+        if (Input.GetKeyDown (KeyCode.R))
+        {
+            Application.LoadLevel (Application.loadedLevel);
+        }
+        else if (Input.touchCount == 2)
+        {
+            Application.LoadLevel (Application.loadedLevel);
+        }
+    }
 }
 
 function SpawnWaves () {
@@ -23,5 +51,26 @@ function SpawnWaves () {
             yield WaitForSeconds (spawnWait);
         }
         yield WaitForSeconds (waveWait);
+        
+        if (gameOver)
+        {
+            restartText.text = "Press 'R' for Restart or Tap Screen with Two Fingers";
+            restart = true;
+            break;
+        }
     }
+}
+
+function AddScore (newScoreValue : int) {
+    score += newScoreValue;
+    UpdateScore ();
+}
+
+function UpdateScore () {
+    scoreText.text = "Score: " + score;
+}
+
+function GameOver () {
+    gameOverText.text = "Game Over!";
+    gameOver = true;
 }
